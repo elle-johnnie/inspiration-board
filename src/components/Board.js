@@ -50,7 +50,7 @@ class Board extends Component {
 
   handleUpdate = (cardId) => {
     // console.log('update card with id:', id);
-    let apiUpdate = 
+    let apiUpdate =
     const url = 'https://inspiration-board.herokuapp.com/cards/'
     axios.put(url + cardId, apiUpdate)
   };
@@ -107,7 +107,7 @@ class Board extends Component {
     });
     console.log('Cardlist:', cardList);
     return (
-      <div>
+      <div className="board">
         <NewCardForm addCardCallback={this.handleAdd}/>
         { cardList }
       </div>
