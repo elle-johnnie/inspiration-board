@@ -50,9 +50,9 @@ class Board extends Component {
 
   handleUpdate = (cardId) => {
     // console.log('update card with id:', id);
-    let apiUpdate =
+    let apiUpdate;
     const url = 'https://inspiration-board.herokuapp.com/cards/'
-    axios.put(url + cardId, apiUpdate)
+    // axios.put(url + cardId, apiUpdate)
   };
 
   handleDelete = (cardId) => {

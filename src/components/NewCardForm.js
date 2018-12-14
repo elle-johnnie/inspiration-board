@@ -60,48 +60,50 @@ class NewCardForm extends Component {
     render() {
 
         return(
-            <div className="new-card-form">
-                <form
-                    className="new-card-form__form"
-                    onSubmit={this.handleSubmit}
-                >
-                    <p className="new-card-form__header">Add a Card</p>
-                    <label
-                        className="new-card-form__form-label"
-                        htmlFor="Text"
-                    >TEXT</label>
-                    <input
-                        type="text"
-                        name="text"
-                        value={this.state.text}
-                        className="new-card-form__form-textarea"
-                        onChange={this.handleFormChanges}
-                        placeholder="Textual Inspiration"
 
-                    />
-
-                    <label
-                        className="new-card-form__form-label"
-                        htmlFor="Emoji"
-                    >EMOJI</label>
-                    <select
-                        name="emoji"
-                        id="emoji"
-                        value={this.state.emojiStr}
-                        className="new-card-form__form-select"
-                        onChange={this.handleFormChanges}
-
+                <div className="new-card-form">
+                    <form
+                        className="new-card-form__form"
+                        onSubmit={this.handleSubmit}
                     >
-                        { this.renderEmojiOptions() }
-                    </select>
+                        <p className="new-card-form__header">Add a Card</p>
+                        <label
+                            className="new-card-form__form-label"
+                            htmlFor="Text"
+                        >TEXT</label>
+                        <input
+                            type="text"
+                            name="text"
+                            value={this.state.text}
+                            className="new-card-form__form-textarea"
+                            onChange={this.handleFormChanges}
+                            placeholder="Textual Inspiration"
 
-                    <input type="submit"
-                           value="Create Card"
-                           className="new-card-form__form-button"
-                           onSubmit={this.handleSubmit}
-                    />
-                </form>
-            </div>
+                        />
+
+                        <label
+                            className="new-card-form__form-label"
+                            htmlFor="Emoji"
+                        >EMOJI</label>
+                        <select
+                            name="emoji"
+                            id="emoji"
+                            value={this.state.emojiStr}
+                            className="new-card-form__form-select"
+                            onChange={this.handleFormChanges}
+
+                        >
+                            { this.renderEmojiOptions() }
+                        </select>
+
+                        <input type="submit"
+                               value="Create Card"
+                               className="new-card-form__form-button"
+                               onSubmit={this.handleSubmit}
+                        />
+                    </form>
+                </div>
+         
         )
     }
 }
