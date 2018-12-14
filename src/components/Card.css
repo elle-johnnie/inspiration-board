@@ -45,3 +45,9 @@
   align-self: start;
   font-family: 'Permanent Marker', Helvetica, sans-serif;
 }
+
+.card__update {
+  align-self: start;
+  color: greenyellow;
+  font-family: 'Permanent Marker', Helvetica, sans-serif;
+}
