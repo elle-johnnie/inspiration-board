@@ -48,7 +48,8 @@ class NewCardForm extends Component {
             return (
                 <option
                     name="emoji"
-                    value={emoji}>
+                    value={emoji}
+                >
                     {emoji.getUnicode(`${emojiStr}`)}
                 </option>)
 
@@ -64,9 +65,7 @@ class NewCardForm extends Component {
                     className="new-card-form__form"
                     onSubmit={this.handleSubmit}
                 >
-                    <div className="new-card-form__header">
-                        Add a Card
-                    </div>
+                    <p className="new-card-form__header">Add a Card</p>
                     <label
                         className="new-card-form__form-label"
                         htmlFor="Text"

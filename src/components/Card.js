@@ -7,30 +7,42 @@ import './Card.css';
 
 // class Card extends Component {
 const Card = (props) => {
-    // const emoji = require("emoji-dictionary");
-    const { id, text, emojiStr } = props.card;
-  // render() {
+    const { id, text } = props.card;
+    let icon = props.card.emoji;
+    if (icon !== null) {
+        icon = emoji.getUnicode(icon)
+    }
+    const handleDelete = () => {
+        console.log(props.card.id);
+        props.removeCardCallback(props.card.id)
+    };
 
+    const handleUpdate = () => {
+        console.log(props.id);
+        props.updateCardCallback(props.id)
+    };
+  // render() {
     return (
       <div className="card" key={id}>
           <section className="card__content">
-              <p className="card__content-text"> {text} </p>
-              <p className="card__content-emoji"> { emoji.getUnicode(`${emojiStr}`) }</p>
+            <p className="card__content-text"> {text} </p>
+            <p className="card__content-emoji"> { icon }</p>
+
+            <button
+                 onClick={handleUpdate}
+                 type="button"
+                className="card__update"
+                aria-label="Update"
+             > UPDATE
+            </button>
+            <button
+                onClick={handleDelete}
+                type="button"
+                className="card__delete"
+                aria-label="Remove"
+            > REMOVE
+           </button>
           </section>
-        <button
-            onClick={props.updateCardCallback(id)}
-            type="button"
-            className="card__update"
-            aria-label="Update"
-        > UPDATE
-        </button>
-        <button
-            onClick={props.removeCardCallback(id)}
-            type="button"
-            className="card__delete"
-            aria-label="Remove"
-        > REMOVE
-        </button>
       </div>
     );
   // }
@@ -38,7 +50,7 @@ const Card = (props) => {
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   emoji: PropTypes.string,
   updateCardCallback: PropTypes.func,
   removeCardCallback: PropTypes.func,

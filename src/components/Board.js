@@ -30,13 +30,13 @@ class Board extends Component {
     axios.get(url + board + '/cards')
         .then((response) => {
           console.log('get response', response);
-          // const cards = response.data.map((card) => {
-          //   let newCard = {...card};
-          //   return newCard;
-          // });
+          const cards = response.data.map((card) => {
+            let newCard = {...card};
+            return newCard;
+          });
 
           this.setState({
-            cards: response.data,
+            cards: cards,
           });
           console.log('this state', this.state.cards);
         })
@@ -48,12 +48,28 @@ class Board extends Component {
         });
   }
 
-  handleUpdate = (id) => {
+  handleUpdate = (cardId) => {
     // console.log('update card with id:', id);
+    let apiUpdate = 
+    const url = 'https://inspiration-board.herokuapp.com/cards/'
+    axios.put(url + cardId, apiUpdate)
   };
 
-  handleDelete = (id) => {
-    // console.log('delete card with id:', id);
+  handleDelete = (cardId) => {
+    console.log('delete card with id:', cardId);
+    let updatedList = this.state.cards ;
+    console.log('before filter', updatedList);
+    updatedList = updatedList.filter(cards => cards.card.id !== cardId);
+    console.log('after filter', updatedList);
+    this.setState({
+        cards: updatedList,
+     });
+    const url = 'https://inspiration-board.herokuapp.com/cards/';
+    axios.delete(url + cardId)
+        .then(response => {
+          console.log(response);
+          console.log(response.data);
+        })
   };
 
   handleAdd = (newCard) => {
@@ -63,7 +79,7 @@ class Board extends Component {
 
     axios.post(url + board + '/cards', apiPayload)
         .then((response) => {
-          console.log('post', response);
+          console.log('post', response.data);
           const newCard = response.data;
 
           const {cards} = this.state;
@@ -87,8 +103,6 @@ class Board extends Component {
                    removeCardCallback={this.handleDelete}
                    updateCardCallback={this.handleUpdate}
                    {...card}
-                   key={card.id}
-                   id={card.id}
             />
     });
     console.log('Cardlist:', cardList);
