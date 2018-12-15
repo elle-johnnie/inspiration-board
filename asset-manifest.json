@@ -1,6 +1,13 @@
 {
-  "main.css": "static/css/main.a745919b.css",
-  "main.css.map": "static/css/main.a745919b.css.map",
-  "main.js": "static/js/main.80faf53e.js",
-  "main.js.map": "static/js/main.80faf53e.js.map"
+  "main.css": "/inspiration-board/static/css/main.2083e8b0.chunk.css",
+  "main.js": "/inspiration-board/static/js/main.d5decc4f.chunk.js",
+  "main.js.map": "/inspiration-board/static/js/main.d5decc4f.chunk.js.map",
+  "static/js/1.757fe26b.chunk.js": "/inspiration-board/static/js/1.757fe26b.chunk.js",
+  "static/js/1.757fe26b.chunk.js.map": "/inspiration-board/static/js/1.757fe26b.chunk.js.map",
+  "runtime~main.js": "/inspiration-board/static/js/runtime~main.d769499a.js",
+  "runtime~main.js.map": "/inspiration-board/static/js/runtime~main.d769499a.js.map",
+  "static/css/main.2083e8b0.chunk.css.map": "/inspiration-board/static/css/main.2083e8b0.chunk.css.map",
+  "index.html": "/inspiration-board/index.html",
+  "precache-manifest.57591bccfde7d85b2e7f902ff6ad2b9e.js": "/inspiration-board/precache-manifest.57591bccfde7d85b2e7f902ff6ad2b9e.js",
+  "service-worker.js": "/inspiration-board/service-worker.js"
 }
