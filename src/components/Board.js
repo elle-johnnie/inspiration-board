@@ -88,11 +88,13 @@ class Board extends Component {
 
     axios.post(url + board + '/cards', apiPayload)
         .then((response) => {
-          console.log('post', response.data);
-          const newCard = response.data;
-
+          console.log('post', response.data.card);
+          const newCard = response.data.card;
           const {cards} = this.state;
           cards.push(newCard);
+          // instead of pushing could use spread operator
+          //  to push new card data to array of cards
+          //  const cards = [newCard, ...this.state.cards];
           this.setState({
             cards,
             errorMessage: 'Card Added! Go forth full of inspiration.',
@@ -108,7 +110,7 @@ class Board extends Component {
 
   render() {
     const cardList = this.state.cards.map((card) => {
-        // console.log('card info', card.id);
+        console.log('card info', card.id);
       return <Card
                {...card}
                key={card.id}

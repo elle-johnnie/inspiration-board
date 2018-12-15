@@ -5,14 +5,12 @@ import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
 
-const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"];
-
+const EMOJI_LIST = ["heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog", ,"100","1234","grinning","grimacing","grin","joy","rofl","partying","smiley","smile","sweat_smile","laughing","innocent","wink","blush","slightly_smiling_face","upside_down_face","relaxed","yum","relieved","heart_eyes","smiling_face_with_three_hearts","kissing_heart","kissing","kissing_smiling_eyes","kissing_closed_eyes","stuck_out_tongue_winking_eye","zany","raised_eyebrow","monocle","stuck_out_tongue_closed_eyes","stuck_out_tongue","money_mouth_face","nerd_face","sunglasses","star_struck","clown_face","cowboy_hat_face","hugs","smirk","no_mouth","neutral_face","expressionless","unamused","roll_eyes","thinking","lying_face","hand_over_mouth","shushing","symbols_over_mouth","exploding_head","flushed","pensive","confused","slightly_frowning_face","frowning_face","persevere","confounded","tired_face","weary","pleading","triumph","open_mouth","scream"]
 class NewCardForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            id: '',
             text: '',
             emoji: '',
             board: '',
@@ -22,9 +20,8 @@ class NewCardForm extends Component {
 
     resetState = () => {
         this.setState({
-            id: '',
             text: '',
-            emoji: [''],
+            emoji: '',
             board: { name: '' },
         });
     };
@@ -41,13 +38,15 @@ class NewCardForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        // require at least some text or an emoji
+        if (this.state.text === "" && this.state.emoji === "") return;
         console.log('submit', this.state);
         this.props.addCardCallback(this.state);
         this.resetState();
     };
 
     renderEmojiOptions = () => {
-        return EMOJI_LIST.map((emojiStr, i) => {
+        const listEmojis = EMOJI_LIST.map((emojiStr, i) => {
             return (
                 <option
                     key={i}
@@ -58,7 +57,8 @@ class NewCardForm extends Component {
                 </option>)
 
         });
-    }
+        return [<option name="board" value="" key="emoji-select">Emoji Selector</option>, listEmojis];
+    };
 
 
     renderBoardOptions = () => {
@@ -74,7 +74,7 @@ class NewCardForm extends Component {
                 </option>)
 
     });
-        return [<option name="board" value="" key="this.state.emoji">Select a board</option>, listBoards];
+        return [<option name="board" value="" key="board-select">Select a board</option>, listBoards];
 };
 
     render() {

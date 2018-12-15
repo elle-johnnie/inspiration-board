@@ -7,6 +7,8 @@ import './Card.css';
 class Card extends Component {
     constructor(props) {
         super(props);
+        // could use state on card to build
+        // update card functionality
         this.state = {
             update: false,
         }
