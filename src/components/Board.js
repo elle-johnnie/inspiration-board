@@ -5,9 +5,7 @@ import axios from 'axios';
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
-
-
+// import CARD_DATA from '../data/card-data.json';
 
 class Board extends Component {
   constructor(props) {
@@ -16,23 +14,34 @@ class Board extends Component {
     this.state = {
       board: '',
       cards: [],
-      errorMessage: ''
+      errorMessage: '',
+      boards: [],
     };
-
-
-
 }
 
   componentDidMount() {
     const url = this.props.url;
     let board = this.props.boardName;
+    // get all the available boards for add a card options
+      let boardsUrl = "https://inspiration-board.herokuapp.com/boards";
+      axios.get(boardsUrl)
+          .then((response) => {
+              console.log('boards', response.data);
+              const boards = response.data.map((boardData) => {
+                  return boardData["board"];
+              });
+              this.setState ({
+                  boards,
+              })
+          });
+
+
     //call axios after mounted
     axios.get(url + board + '/cards')
         .then((response) => {
           console.log('get response', response);
-          const cards = response.data.map((card) => {
-            let newCard = {...card};
-            return newCard;
+          const cards = response.data.map((cardData) => {
+            return cardData['card'];
           });
 
           this.setState({
@@ -48,33 +57,33 @@ class Board extends Component {
         });
   }
 
-  handleUpdate = (cardId) => {
-    // console.log('update card with id:', id);
-    let apiUpdate;
-    const url = 'https://inspiration-board.herokuapp.com/cards/'
-    // axios.put(url + cardId, apiUpdate)
-  };
+  // handleUpdate = (cardId) => {
+  //   // console.log('update card with id:', id);
+  //   let apiUpdate;
+  //   const url = 'https://inspiration-board.herokuapp.com/cards/'
+  //   // axios.put(url + cardId, apiUpdate)
+  // };
 
   handleDelete = (cardId) => {
     console.log('delete card with id:', cardId);
     let updatedList = this.state.cards ;
-    console.log('before filter', updatedList);
-    updatedList = updatedList.filter(cards => cards.card.id !== cardId);
-    console.log('after filter', updatedList);
+    updatedList = updatedList.filter(cards => cards.id !== cardId);
+
     this.setState({
         cards: updatedList,
      });
     const url = 'https://inspiration-board.herokuapp.com/cards/';
     axios.delete(url + cardId)
         .then(response => {
-          console.log(response);
           console.log(response.data);
         })
   };
 
   handleAdd = (newCard) => {
+    console.log('handle adding to', newCard);
     const url = this.props.url;
-    let board = this.props.boardName;
+    let board = newCard.board;
+    console.log('board:', board);
     const apiPayload = {...newCard };
 
     axios.post(url + board + '/cards', apiPayload)
@@ -92,23 +101,27 @@ class Board extends Component {
         .catch((error) => {
           console.log('errors', error.message);
           this.setState({
-            errorMessage: `Fail! ${error.message}`,
+            errorMessage: `Failure! ${error.message}`,
           })
         });
     };
 
   render() {
     const cardList = this.state.cards.map((card) => {
+        // console.log('card info', card.id);
       return <Card
-                   removeCardCallback={this.handleDelete}
-                   updateCardCallback={this.handleUpdate}
-                   {...card}
+               {...card}
+               key={card.id}
+               removeCardCallback={this.handleDelete}
+               // updateCardCallback={this.handleUpdate}
             />
     });
-    console.log('Cardlist:', cardList);
+    // console.log('Cardlist:', cardList);
     return (
       <div className="board">
-        <NewCardForm addCardCallback={this.handleAdd}/>
+        <NewCardForm
+            boards={this.state.boards}
+            addCardCallback={this.handleAdd}/>
         { cardList }
       </div>
     )

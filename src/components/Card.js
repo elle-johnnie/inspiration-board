@@ -13,41 +13,43 @@ class Card extends Component {
     };
 
     handleDelete = () => {
-        console.log(this.props.card.id);
-        this.props.removeCardCallback(this.props.card.id)
+        console.log(this.props.id);
+        this.props.removeCardCallback(this.props.id)
     };
 
     handleUpdate = () => {
-        console.log(this.props.card.id);
-        this.props.updateCardCallback(this.props.card.id)
+        console.log(this.props.id);
+        this.props.updateCardCallback(this.props.id)
     };
 
+
     render() {
-        const {id, text} = this.props.card;
-        let icon = this.props.card.emoji;
+        const {id, text} = this.props;
+        let icon = this.props.emoji;
         if (icon !== undefined) {
             icon = emoji.getUnicode(icon);
         }
         return (
-            <div className="card" key={id}>
+            <div className="card hvr-curl-bottom-right" key={id}>
                 <section className="card__content">
                     <p className="card__content-text"> {text} </p>
-                    <p className="card__content-emoji"> {icon}</p>
-
-                    <button
-                        onClick={this.handleUpdate}
-                        type="button"
-                        className="card__update"
-                        aria-label="Update"
-                    > UPDATE
-                    </button>
+                    <p className="card__content-emoji"> {icon} </p>
+                    <section className="buttons">
+                    {/*<button*/}
+                        {/*onClick={this.handleUpdate}*/}
+                        {/*type="button"*/}
+                        {/*className="card__update btn hvr-grow-shadow"*/}
+                        {/*aria-label="Update"*/}
+                    {/*> UPDATE*/}
+                    {/*</button>*/}
                     <button
                         onClick={this.handleDelete}
                         type="button"
-                        className="card__delete"
+                        className="card__delete btn hvr-grow-shadow"
                         aria-label="Remove"
                     > REMOVE
                     </button>
+                    </section>
                 </section>
             </div>
         );
@@ -58,7 +60,7 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string,
   emoji: PropTypes.string,
-  updateCardCallback: PropTypes.func,
+  // updateCardCallback: PropTypes.func,
   removeCardCallback: PropTypes.func,
 
 };

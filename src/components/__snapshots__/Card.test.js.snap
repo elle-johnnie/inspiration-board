@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card card renders when no emoji 1`] = `
+<div
+  className="card hvr-curl-bottom-right"
+  key="2"
+>
+  <section
+    className="card__content"
+  >
+    <p
+      className="card__content-text"
+    >
+       
+      you are better than amazing
+       
+    </p>
+    <p
+      className="card__content-emoji"
+    >
+       
+       
+    </p>
+    <section
+      className="buttons"
+    >
+      <button
+        aria-label="Remove"
+        className="card__delete btn hvr-grow-shadow"
+        onClick={[Function]}
+        type="button"
+      >
+         REMOVE
+      </button>
+    </section>
+  </section>
+</div>
+`;
+
+exports[`Card card renders when no text 1`] = `
+<div
+  className="card hvr-curl-bottom-right"
+  key="3"
+>
+  <section
+    className="card__content"
+  >
+    <p
+      className="card__content-text"
+    >
+       
+      you are better than everything amazing
+       
+    </p>
+    <p
+      className="card__content-emoji"
+    >
+       
+      ❤️
+       
+    </p>
+    <section
+      className="buttons"
+    >
+      <button
+        aria-label="Remove"
+        className="card__delete btn hvr-grow-shadow"
+        onClick={[Function]}
+        type="button"
+      >
+         REMOVE
+      </button>
+    </section>
+  </section>
+</div>
+`;
+
+exports[`Card that it matches an existing snapshot 1`] = `
+<div
+  className="card hvr-curl-bottom-right"
+  key="1"
+>
+  <section
+    className="card__content"
+  >
+    <p
+      className="card__content-text"
+    >
+       
+      you are amazing
+       
+    </p>
+    <p
+      className="card__content-emoji"
+    >
+       
+      ❤️
+       
+    </p>
+    <section
+      className="buttons"
+    >
+      <button
+        aria-label="Remove"
+        className="card__delete btn hvr-grow-shadow"
+        onClick={[Function]}
+        type="button"
+      >
+         REMOVE
+      </button>
+    </section>
+  </section>
+</div>
+`;

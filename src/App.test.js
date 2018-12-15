@@ -12,3 +12,13 @@ describe('App', () => {
   });
 
 });
+
+// shallow only tests the parent not the
+// children component
+
+  it('matches the snapshot', () => {
+    const wrapper = shallow(<App/>);
+    expect(wrapper).toMatchSnapshot();
+
+
+});
